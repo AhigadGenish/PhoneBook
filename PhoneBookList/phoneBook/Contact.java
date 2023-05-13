@@ -41,7 +41,7 @@ public class Contact {
 	public boolean equals(Object obj) {
 		
 		// Check if obj is Contact
-		if(obj instanceof Contact) {
+		if(obj instanceof Contact == true) {
 			// Casting
 			Contact other = (Contact) obj;
 			return this.name.equals(other.getName()) && this.phoneNumber.equals(other.getPhoneNumber());
