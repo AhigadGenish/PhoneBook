@@ -10,11 +10,17 @@ public class Contact {
 	
 	private String phoneNumber;
 	
-	// Constructor
+	// Constructors
 	public Contact (String newName,String newPhoneNumber){
 		
 		this.name = newName;
 		this.phoneNumber = newPhoneNumber;
+	}
+	
+	public Contact(Contact anyContact) {
+		
+		this.name = anyContact.name;
+		this.phoneNumber = anyContact.phoneNumber;
 	}
 	
 	// Getters

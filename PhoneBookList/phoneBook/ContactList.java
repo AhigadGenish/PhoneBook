@@ -31,19 +31,15 @@ public class ContactList {
 	// Add contact 
 	public void addContact(Contact anyContact) {
 		
-		ContactNode newNode = new ContactNode(anyContact);
+		// Build ContactNode
+		ContactNode newNode = new ContactNode(new Contact(anyContact));
 		
-		// If the list is empty
-		if(this.getHead() == null) {
-			
-			this.setHead(newNode);
-			return;
-		}
-		
-		// Else, there is at least one on the list, so the newNode will be first with reference to the current head.
+		// Insert to the beginning, and update head.
 		newNode.setNext(this.getHead());
 		this.setHead(newNode);
 		
+		// Notify upon insertion
+		System.out.println("Contact " + newNode.getContact() + "added.");
 	}
 	
 	// Iterator
@@ -59,6 +55,7 @@ public class ContactList {
 		
 		boolean anyName = false;
 		
+		// Initialize iterator and previous to scan the list.
 		ContactNode iterator = this.getIterator();
 		ContactNode prev = null;
 		
@@ -106,6 +103,7 @@ public class ContactList {
 			return;
 		}
 		
+		// Initialize iterator to scan the list.
 		ContactNode iterator = this.getIterator();
 		
 		while(iterator != null) {
@@ -121,7 +119,7 @@ public class ContactList {
 	public void searchByName (String name) {
 		
 		boolean exist = false;
-
+		// Initialize iterator to scan the list.
 		ContactNode iterator = this.getIterator();
 		
 		while(iterator != null) {
@@ -149,6 +147,8 @@ public class ContactList {
 		ContactNameComparator sortByName = new ContactNameComparator();
 		// Sort By name
 		this.sort(sortByName);
+		
+		System.out.println("Phone book sorted by name.");
 	}
 	
 	// Sort List By Phone Number. Heap Sort
@@ -158,14 +158,16 @@ public class ContactList {
 		ContactPhoneComparator sortByPhone = new ContactPhoneComparator();
 		// Sort By phone number
 		this.sort(sortByPhone);
+		
+		System.out.println("Phone book sorted by phone.");
 	}
 	
-	// Generic HeapSort function O(nlogn), get the comparator object and sort - Strategy Design Pattern.
+	// Generic HeapSort function O(n*log(n)), get the comparator object and sort - Strategy Design Pattern.
 	private void sort(Comparator<ContactNode> anyCompare) {
 		
 		// If the list empty, no need to sort.
-		if(this.getHead() == null) {
-			return;
+		if(this.getHead() == null) { 
+			 return;
 		}
 		
 		// Initialize the heap by the comparator.
@@ -230,6 +232,8 @@ public class ContactList {
 			// Update references.
 			iterator = iterator.getNext();
 		}
+		
+		System.out.println("Duplicates removed.");
 	}
 
 	// Reverse list by recursion
@@ -258,6 +262,8 @@ public class ContactList {
 		
 		ContactNode iterator = this.getIterator();
 		this.setHead(this.reverse(iterator));
+		
+		System.out.println("Phone book reversed.");
 	}
 	
 	//Import phoneBook from txt file
@@ -288,6 +294,7 @@ public class ContactList {
 	        // Close file stream
 	        scanner.close();
 	        
+	        System.out.println("Phone book loaded from file.");
         
 		} 
 		catch (Exception e) {
@@ -319,6 +326,8 @@ public class ContactList {
             
             // Close writer
             writer.close();
+            
+            System.out.println("Phone book saved to file.");
              
        } 
 	   catch (Exception e) {

@@ -16,8 +16,7 @@ public class ContactNode {
 	
 	public ContactNode(Contact newContact) {
 		
-		this.contact = newContact;
-		this.next = null;
+		this(newContact, null);
 	}
 	
 	// Getters
